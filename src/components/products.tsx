@@ -20,7 +20,7 @@ import blueCoffeeMug from "../assets/images/products/blueCoffeeMug.png";
 import whiteWideLipMug from "../assets/images/products/whiteWideLipMug.png";
 import whiteWideMug from "../assets/images/products/whiteWideMug.png";
 
-//desktop images
+//icons
 
 import star from "../assets/icon/star.png";
 import Button from "./button";
@@ -149,7 +149,7 @@ const Products = () => {
   ];
   return (
     <div className="w-[85%] mx-auto mb-5">
-      <h2 className="font-semibold text-base mt-2 mb-5">
+      <h2 className="font-semibold text-base mt-3 mb-6 md:mt-12 md:mb-8">
         Products list <span className="text-gray-400">(20)</span>
       </h2>
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">

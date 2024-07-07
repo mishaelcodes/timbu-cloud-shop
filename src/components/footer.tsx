@@ -30,7 +30,7 @@ const Footer = () => {
           experience.
         </p>
       </div>
-      <div className="flex items-center justify-center  md:absolute bottom-5 md:left-1/2 md:-translate-x-1/2">
+      <div className="flex items-center justify-center mt-20 md:mt-0  md:absolute bottom-5 md:left-1/2 md:-translate-x-1/2">
         <sub>Copyright 2024 Timbu Company - All rights reserved</sub>
       </div>
     </footer>
