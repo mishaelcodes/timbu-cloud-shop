@@ -4,6 +4,9 @@ import classicAbMugPink from "../assets/images/products/classic-ab-mug-pink.png"
 import classicAbMugBrown from "../assets/images/products/classic-ab-mug-brown.png";
 import classicAbMugYellow from "../assets/images/products/classic-ab-mug-yellow.png";
 import heartCup from "../assets/images/products/heart-cup.png";
+
+import arrowLeft from "../assets/icon/arrow-left.png";
+import Button from "./button";
 const Products = () => {
   const arrayOfProducts = [
     {
@@ -62,6 +65,11 @@ const Products = () => {
             <p>{product.productRating}</p>
           </div>
         ))}
+      </div>
+      <div className="flex items-center justify-between my-10">
+        <img src={arrowLeft} alt="" />
+        <Button content="Next Page" />
+        <p>Page 1 of 7</p>
       </div>
     </div>
   );
