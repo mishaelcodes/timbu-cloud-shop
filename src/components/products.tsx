@@ -1,23 +1,26 @@
-import abMug from "../assets/images/products/AB-mug.png";
-import blueMonday from "../assets/images/products/blue-monday-ab-mug.png";
-import classicAbMugPink from "../assets/images/products/classic-ab-mug-pink.png";
-import classicAbMugBrown from "../assets/images/products/classic-ab-mug-brown.png";
-import classicAbMugYellow from "../assets/images/products/classic-ab-mug-yellow.png";
-import heartCup from "../assets/images/products/heart-cup.png";
-import yellowAndOrangeMug from "../assets/images/products/yellow-and-orange-mug.png";
-import smileyFaceMug from "../assets/images/products/smiley-face-mug.png";
-import plainWhiteMug from "../assets/images/products/plain-white-mug.png";
-import bestBossMug from "../assets/images/products/best-boss-mug.png";
-import whiteMetalMug from "../assets/images/products/white-metal-mug.png";
-import winkyFaceMug from "../assets/images/products/winky-face-mug.png";
-import breakfastMug from "../assets/images/products/breakfast-mug.png";
-import blackWideMug from "../assets/images/products/black-wide-mug.png";
-import worldsBestBossMug from "../assets/images/products/world's-best-boss.png";
-import slimYellowMug from "../assets/images/products/slim-yellow-mug.png";
-import theBossMug from "../assets/images/products/the-boss-mug.png";
-import blueCoffeeMug from "../assets/images/products/blue-coffee-mug.png";
-import whiteWideLipMug from "../assets/images/products/white-mug.png";
-import whiteWideMug from "../assets/images/products/white-wide-mug.png";
+// mobile images
+import abMug from "../assets/images/products/abMug.png";
+import blueMonday from "../assets/images/products/blueMondayMug.png";
+import classicAbMugPink from "../assets/images/products/peachMug.png";
+import classicAbMugBrown from "../assets/images/products/brownMug.png";
+import classicAbMugYellow from "../assets/images/products/yellowMug.png";
+import heartCup from "../assets/images/products/heartMug.png";
+import yellowAndOrangeMug from "../assets/images/products/yellowAndOrangeMug.png";
+import smileyFaceMug from "../assets/images/products/smileyMug.png";
+import plainWhiteMug from "../assets/images/products/plainWhiteMug.png";
+import bestBossMug from "../assets/images/products/bestBossMug.png";
+import whiteMetalMug from "../assets/images/products/whiteMetalMug.png";
+import winkyFaceMug from "../assets/images/products/winkyFaceMug.png";
+import breakfastMug from "../assets/images/products/breakfastMug.png";
+import blackWideMug from "../assets/images/products/blackWideMug.png";
+import worldsBestBossMug from "../assets/images/products/world'sBestBossMug.png";
+import slimYellowMug from "../assets/images/products/slimYellowMug.png";
+import theBossMug from "../assets/images/products/theBossMug.png";
+import blueCoffeeMug from "../assets/images/products/blueCoffeeMug.png";
+import whiteWideLipMug from "../assets/images/products/whiteWideLipMug.png";
+import whiteWideMug from "../assets/images/products/whiteWideMug.png";
+
+//desktop images
 
 import star from "../assets/icon/star.png";
 import Button from "./button";
@@ -149,7 +152,7 @@ const Products = () => {
       <h2 className="font-semibold text-base mt-2 mb-5">
         Products list <span className="text-gray-400">(20)</span>
       </h2>
-      <div className="grid grid-cols-2 gap-3">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         {arrayOfProducts.map((product, index) => (
           <div
             key={index}
