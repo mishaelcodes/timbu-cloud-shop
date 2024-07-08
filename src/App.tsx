@@ -1,11 +1,16 @@
+import { createBrowserRouter } from "react-router-dom";
 import Home from "./pages/home";
+import Cart from "./pages/cart"
 
-function App() {
-  return (
-    <div className="font-manrope">
-      <Home />
-    </div>
-  );
-}
+const App = createBrowserRouter([
+  {
+    path: "/",
+    element: <Home />
+  },
+  {
+    path: "/cart",
+    element: <Cart />
+  },
+])
 
 export default App;

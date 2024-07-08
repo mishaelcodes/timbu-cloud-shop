@@ -16,6 +16,9 @@ export default {
       fontFamily: {
         manrope: ["Manrope", "sans-serif"],
       },
+      padding: {
+        2: "10px"
+      }
     },
   },
   plugins: [],

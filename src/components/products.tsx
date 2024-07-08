@@ -169,7 +169,7 @@ const Products = () => {
               </p>
             </div>
             <div className="px-1">
-              <Button content="Add to cart" />
+              <Button content="Add to cart" width="w-full"/>
             </div>
           </div>
         ))}
