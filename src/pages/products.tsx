@@ -153,14 +153,14 @@ const Products = () => {
       <h2 className="font-semibold text-base mt-3 mb-6 md:mt-12 md:mb-8">
         Products list <span className="text-gray-400">(20)</span>
       </h2>
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-3">
         {arrayOfProducts.map((product, index) => (
           <div
             key={index}
-            className="border-2 border-timbuGrey rounded-md py-[10px]"
+            className="border-2 border-timbuGrey rounded-md py-[20px] px-2"
           >
             <img src={product.productImage} alt="" />
-            <div className="pl-1 mb-1">
+            <div className="mb-1">
               <p className="font-semibold text-sm mt-1">
                 {product.productName}
               </p>
@@ -171,7 +171,7 @@ const Products = () => {
                 <img src={star} alt="star icon" /> {product.productRating}
               </p>
             </div>
-            <div className="px-1">
+            <div className="px-2">
               <Link to="/cart">
                 <Button content="Add to cart" width="w-full" />
               </Link>
