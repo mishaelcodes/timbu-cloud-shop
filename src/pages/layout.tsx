@@ -5,7 +5,13 @@ import { Outlet } from "react-router-dom";
 const Cart = () => {
   return (
     <>
-      <Header />
+      {window.location.pathname === "/" ? (
+        <Header />
+      ) : window.location.pathname === "/cart" ? (
+        <Header />
+      ) : (
+        ""
+      )}
       <main>
         <Outlet />
       </main>

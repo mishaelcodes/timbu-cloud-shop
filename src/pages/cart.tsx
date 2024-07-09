@@ -5,6 +5,7 @@ import minus from "../assets/icon/minus.png";
 import abMug from "../assets/images/products/abMugSmall.png";
 import Button from "../components/button";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 const CartComponent = () => {
   const [count, setCount] = useState(1);
 
@@ -24,21 +25,21 @@ const CartComponent = () => {
           {/* cart header */}
           <div className="flex items-center justify-between">
             {/* cart icon */}
-            <div className="flex items-center justify-between">
+            <div className="flex items-center justify-between lg:text-2xl">
               <img src={backButton} alt="" /> <p>Cart</p>
             </div>
             <p>1 item</p>
           </div>
           {/* cart order */}
           {/* desktop only */}
-          <div className="hidden lg:flex items-center justify-between mt-10 -mb-5 text-[#1b1c1d80]">
-            <p>
-              <input type="checkbox" />
+          <div className="hidden lg:flex items-center justify-between mt-10 -mb-5 text-[#1b1c1d80] text-base xl:text-2xl">
+            <p className="mr-12 flex items-center">
+              <input type="checkbox" className="mr-2 w-5 h-5 rounded-md" />
               PRODUCTS
             </p>
-            <p>QUANTITY</p>
-            <p>Price</p>
-            <p>Remove</p>
+            <p className="ml-12">QUANTITY</p>
+            <p className="xl:ml-10">PRICE</p>
+            <p>REMOVE</p>
           </div>
           <div className="lg:h-28 flex items-center lg:items-start justify-between mt-10 border-t border-b border-timbuGrey rounded-md p-2">
             <div className="flex items-center justify-center lg:w-full lg:h-full">
@@ -56,36 +57,36 @@ const CartComponent = () => {
                     src={minus}
                     alt=""
                     onClick={decrease}
-                    className="active:scale-90 transition-all"
+                    className="active:scale-75 transition-all"
                   />
                   <p>{count}</p>
                   <img
                     src={plus}
                     alt=""
                     onClick={increase}
-                    className="active:scale-90 transition-all"
+                    className="active:scale-75 transition-all"
                   />
                 </div>
               </div>
               {/* desktop */}
               <div className="hidden lg:flex items-start justify-between h-full w-full pr-3">
                 <p>Classic AB Mug</p>
-                <p className="text-timbuRed font-semibold">N7499.99</p>
-                <div className="flex items-center justify-evenly text-center border-2 border-timbuGrey rounded-md w-1/4">
+                <div className="flex items-center justify-evenly text-center border-2 border-timbuGrey rounded-md w-1/5">
                   <img
                     src={minus}
                     alt=""
                     onClick={decrease}
-                    className="active:scale-90 transition-all"
+                    className="active:scale-75 transition-all"
                   />
                   <p>{count}</p>
                   <img
                     src={plus}
                     alt=""
                     onClick={increase}
-                    className="active:scale-90 transition-all"
+                    className="active:scale-75 transition-all"
                   />
                 </div>
+                <p className="text-timbuRed font-semibold">N7499.99</p>
                 <img
                   src={trash}
                   alt="delete icon"
@@ -97,7 +98,7 @@ const CartComponent = () => {
           </div>
         </div>
         <div className="border-2 border-timbuGrey rounded-md mt-14 md:mt-0 p-[10px]">
-          <h2 className="rounded-md text-center bg-timbuBlue font-semibold text-base p-3 mb-7">
+          <h2 className="rounded-md text-center bg-timbuBlue font-semibold text-base p-3 mb-7 lg:text-2xl">
             Order Summary
           </h2>
           <form className="flex items-center justify-evenly mb-3">
@@ -137,7 +138,13 @@ const CartComponent = () => {
               <p>N9,999.99</p>
             </div>
           </div>
-          <Button content="Checkout" width="w-full" padding="py-2 px-[30px]" />
+          <Link to="/checkout">
+            <Button
+              content="Checkout"
+              width="w-full"
+              padding="py-2 px-[30px]"
+            />
+          </Link>
         </div>
       </div>
     </div>
