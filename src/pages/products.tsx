@@ -157,7 +157,7 @@ const Products = () => {
         {arrayOfProducts.map((product, index) => (
           <div
             key={index}
-            className="border-2 border-timbuGrey rounded-md py-[20px] px-2"
+            className="border-2 border-timbuGrey rounded-md py-[20px] px-1"
           >
             <img src={product.productImage} alt="" />
             <div className="mb-1">

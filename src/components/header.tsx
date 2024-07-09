@@ -8,8 +8,11 @@ const Hero = () => {
         <Link to="/">
           <h1 className="font-semibold text-timbuWhite">TimbuCloudShop</h1>
         </Link>
-        <Link to="/cart">
+        <Link to="/cart" className="lg:hidden">
           <img src={cart} alt="cart-icon" />
+        </Link>
+        <Link to="/cart" className="hidden lg:flex items-center justify-center text-timbuGrey">
+          <img src={cart} alt="cart-icon" /> <p>Cart</p>
         </Link>
       </nav>
     </header>
