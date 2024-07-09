@@ -19,15 +19,29 @@ const CartComponent = () => {
   return (
     <div className="w-[90%] mx-auto mb-5 font-semibold min-h-[50vh] lg:min-h-[60vh]">
       <div className="md:flex items-start justify-between mt-5">
-        <div className="md:w-[45%] items-center justify-between">
+        {/* cart section */}
+        <div className="md:w-[45%] lg:w-[60%] items-center justify-between">
+          {/* cart header */}
           <div className="flex items-center justify-between">
+            {/* cart icon */}
             <div className="flex items-center justify-between">
               <img src={backButton} alt="" /> <p>Cart</p>
             </div>
             <p>1 item</p>
           </div>
-          <div className="flex items-center justify-between mt-10 border-2 border-timbuGrey rounded-md p-2">
-            <div className="flex items-center justify-center">
+          {/* cart order */}
+          {/* desktop only */}
+          <div className="flex items-center justify-between mt-10 -mb-5 text-[#1b1c1d80]">
+            <p>
+              <input type="checkbox" />
+              PRODUCTS
+            </p>
+            <p>QUANTITY</p>
+            <p>Price</p>
+            <p>Remove</p>
+          </div>
+          <div className="lg:h-28 flex items-center lg:items-start justify-between mt-10 border-t border-b border-timbuGrey rounded-md p-2">
+            <div className="flex items-center justify-center lg:w-full lg:h-full">
               <div className="mr-1">
                 <img src={abMug} alt="product ab mug" />
               </div>
@@ -53,10 +67,11 @@ const CartComponent = () => {
                   />
                 </div>
               </div>
-              <div className="hidden lg:flex items-center justify-evenly w-full">
+              {/* desktop */}
+              <div className="hidden lg:flex items-start justify-between h-full w-full pr-3">
                 <p>Classic AB Mug</p>
                 <p className="text-timbuRed font-semibold">N7499.99</p>
-                <div className="flex items-center justify-evenly text-center border-2 border-timbuGrey rounded-md">
+                <div className="flex items-center justify-evenly text-center border-2 border-timbuGrey rounded-md w-1/4">
                   <img
                     src={minus}
                     alt=""
@@ -71,9 +86,14 @@ const CartComponent = () => {
                     className="active:scale-90 transition-all"
                   />
                 </div>
+                <img
+                  src={trash}
+                  alt="delete icon"
+                  className="hidden lg:block"
+                />
               </div>
             </div>
-            <img src={trash} alt="delete icon" />
+            <img src={trash} alt="delete icon" className="lg:hidden" />
           </div>
         </div>
         <div className="border-2 border-timbuGrey rounded-md mt-14 md:mt-0 p-[10px]">
