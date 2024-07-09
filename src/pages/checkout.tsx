@@ -61,7 +61,7 @@ const Checkout = () => {
             <p className="text-sm">Choose your preferred payment method</p>
             <form className="flex items-center justify-between mt-4">
               <div className="flex items-center">
-                <input type="radio" name="payment-type" id=" visa" checked />
+                <input type="radio" name="payment-type" id=" visa" />
                 <img src={visa} alt="" className="ml-3" />
               </div>
               <div className="flex items-center mx-10">
