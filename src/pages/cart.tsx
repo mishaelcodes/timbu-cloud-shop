@@ -116,7 +116,7 @@ const CartComponent = () => {
               <Button
                 content="Apply"
                 width="w-fit"
-                padding="py-3 px-5 max-[375px]:px-5"
+                padding="py-4 px-5 max-[375px]:px-5"
               />
             </div>
           </form>
