@@ -35,14 +35,14 @@ const Checkout = () => {
           <p>Order Summary</p>
         </div>
         <div className="w-[20%]">
-          <hr className="h-px border-0 bg-timbuGrey w-full" />
+          <hr className="h-px border-0 bg-timbuGrey w-full hidden lg:block" />
         </div>
         <div className="flex items-center justify-center flex-col">
           <img src={radioMarked} alt="" />
           <p>Payment</p>
         </div>
         <div className="w-[20%]">
-          <hr className="h-px border-0 bg-timbuGrey w-full" />
+          <hr className="h-px border-0 bg-timbuGrey w-full hidden lg:block" />
         </div>
         <div className="flex items-center justify-center flex-col">
           <img src={radioDisabled} alt="" />

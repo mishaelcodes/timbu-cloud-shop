@@ -3,6 +3,7 @@ import Products from "./pages/products";
 import Cart from "./pages/cart";
 import Layout from "./pages/layout";
 import Checkout from "./pages/checkout";
+import Confirmation from "./pages/confirmation";
 
 const App = createBrowserRouter([
   {
@@ -20,6 +21,10 @@ const App = createBrowserRouter([
       {
         path: "checkout",
         element: <Checkout />,
+      },
+      {
+        path: "confirmation",
+        element: <Confirmation />,
       },
     ],
   },
