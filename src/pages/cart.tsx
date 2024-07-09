@@ -31,7 +31,7 @@ const CartComponent = () => {
           </div>
           {/* cart order */}
           {/* desktop only */}
-          <div className="flex items-center justify-between mt-10 -mb-5 text-[#1b1c1d80]">
+          <div className="hidden lg:flex items-center justify-between mt-10 -mb-5 text-[#1b1c1d80]">
             <p>
               <input type="checkbox" />
               PRODUCTS
