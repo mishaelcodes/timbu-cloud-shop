@@ -5,7 +5,7 @@ import Button from "../components/button";
 
 const Confirmation = () => {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen" id="top">
       <div className="max-w-screen flex items-center justify-between lg:justify-center p-3 bg-timbuBlack text-timbuWhite text-[10px]">
         <div className="flex items-center justfy-center flex-col">
           <img src={checkedCircle} alt="" />

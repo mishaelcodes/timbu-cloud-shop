@@ -7,6 +7,7 @@ import masterCard from "../assets/icon/mastercard.png";
 import visa from "../assets/icon/visa.png";
 import Button from "../components/button";
 import abMug from "../assets/images/products/abMugSmall.png";
+import { Link } from "react-router-dom";
 
 const Checkout = () => {
   const dateInputFormat = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -172,7 +173,9 @@ const Checkout = () => {
                   className="w-1/2 py-2 pl-[5px] border border-timbuBlack rounded-md mb-5"
                 />
               </label>
-              <Button content="Pay now" width="w-full" />
+              <Link to="/confirmation">
+                <Button content="Pay now" width="w-full" />
+              </Link>
             </form>
           </div>
         </div>
