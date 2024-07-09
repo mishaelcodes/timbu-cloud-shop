@@ -1,15 +1,16 @@
 import Header from "../components/header";
-import Products from "../components/products";
 import Footer from "../components/footer";
+import { Outlet } from "react-router-dom";
 
-const Home = () => {
+const Cart = () => {
   return (
     <>
       <Header />
-      <Products />
+      <main>
+        <Outlet />
+      </main>
       <Footer />
     </>
   );
 };
-
-export default Home;
+export default Cart;

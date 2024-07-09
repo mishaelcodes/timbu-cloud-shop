@@ -1,16 +1,23 @@
 import { createBrowserRouter } from "react-router-dom";
-import Home from "./pages/home";
-import Cart from "./pages/cart"
+import Products from "./pages/products";
+import Cart from "./pages/cart";
+import Layout from "./pages/layout";
 
 const App = createBrowserRouter([
   {
     path: "/",
-    element: <Home />
+    element: <Layout />,
+    children: [
+      {
+        index: true,
+        element: <Products />,
+      },
+      {
+        path: "cart",
+        element: <Cart />,
+      },
+    ],
   },
-  {
-    path: "/cart",
-    element: <Cart />
-  },
-])
+]);
 
 export default App;

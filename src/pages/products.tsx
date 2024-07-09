@@ -23,7 +23,8 @@ import whiteWideMug from "../assets/images/products/whiteWideMug.png";
 //icons
 
 import star from "../assets/icon/star.png";
-import Button from "./button";
+import Button from "../components/button";
+import { Link } from "react-router-dom";
 const Products = () => {
   const arrayOfProducts = [
     {
@@ -160,7 +161,9 @@ const Products = () => {
           >
             <img src={product.productImage} alt="" />
             <div className="pl-1 mb-1">
-              <p className="font-semibold text-sm mt-1">{product.productName}</p>
+              <p className="font-semibold text-sm mt-1">
+                {product.productName}
+              </p>
               <p className="text-timbuRed font-medium text-sm my-1">
                 N{product.productPrice}
               </p>
@@ -169,7 +172,9 @@ const Products = () => {
               </p>
             </div>
             <div className="px-1">
-              <Button content="Add to cart" width="w-full"/>
+              <Link to="/cart">
+                <Button content="Add to cart" width="w-full" />
+              </Link>
             </div>
           </div>
         ))}

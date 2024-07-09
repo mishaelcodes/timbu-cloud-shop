@@ -1,7 +1,7 @@
 import shopImage from "../assets/images/shopImage.png";
 const Footer = () => {
   return (
-    <footer className="bg-timbuGrey mt-12 p-8 md:relative md:pb-24 md:min-h-96">
+    <footer className="bg-timbuGrey mt-12 p-8 md:relative bottom-0 min-h-96 md:mt-24 min-[820px]:mt-32">
       <section className="md:flex items-center justify-between">
         <div>
           <h3 className="font-semibold">Address</h3>
@@ -13,11 +13,11 @@ const Footer = () => {
         </div>
         <div className="mt-5">
           <h3 className="font-semibold">Contact</h3>
-          <p>
+          <div>
             <p>support@timbucloudshop.com</p>
             <p>help@timbucloudshop.com</p>
             <p className="font-semibold">01-234567, 01-99952</p>
-          </p>
+          </div>
         </div>
       </section>
       <div className="flex items-center justify-center flex-col mt-7 text-center md:absolute md:top-0 md:left-1/2 md:-translate-x-1/2 md:w-1/3">
@@ -30,7 +30,7 @@ const Footer = () => {
           experience.
         </p>
       </div>
-      <div className="flex items-center justify-center mt-20 md:mt-0  md:absolute bottom-5 md:left-1/2 md:-translate-x-1/2">
+      <div className="flex items-center justify-center mt-20 md:mt-0 md:absolute bottom-5 md:left-1/2 md:-translate-x-1/2">
         <sub>Copyright 2024 Timbu Company - All rights reserved</sub>
       </div>
     </footer>
