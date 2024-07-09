@@ -53,7 +53,7 @@ const Checkout = () => {
         <img src={backButton} alt="" className="mr-2" />
         Checkout
       </p>
-      <div className="flex items-start justify-center md:justify-around">
+      <div className="md:flex items-start justify-center md:justify-around">
         <div>
           <div className="w-[90%] mx-auto flex items-start justify-start flex-col mt-7 border-b border-b-timbuGrey lg:border-0 pb-10 mb-10">
             <h3 className="font-semibold text-base">Payment Method</h3>
