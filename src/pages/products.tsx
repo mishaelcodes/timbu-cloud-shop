@@ -171,11 +171,9 @@ const Products = () => {
                 <img src={star} alt="star icon" /> {product.productRating}
               </p>
             </div>
-            <div className="px-2">
-              <Link to="/cart">
-                <Button content="Add to cart" width="w-full" />
-              </Link>
-            </div>
+            <Link to="/cart">
+              <Button content="Add to cart" width="w-full" />
+            </Link>
           </div>
         ))}
       </div>
