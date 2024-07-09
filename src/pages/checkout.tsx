@@ -9,9 +9,26 @@ import Button from "../components/button";
 import abMug from "../assets/images/products/abMugSmall.png";
 
 const Checkout = () => {
+  const dateInputFormat = (e: React.ChangeEvent<HTMLInputElement>) => {
+    let input = e.target.value;
+
+    // Remove any non-numeric characters
+    input = input.replace(/\D/g, '');
+
+    // Add the slash after the first two digits
+    if (input.length >= 2) {
+        input = input.slice(0, 2) + '/' + input.slice(2);
+    }
+
+    // Limit the length to 5 characters (MM/YY)
+    if (input.length > 5) {
+        input = input.slice(0, 5);
+    }
+
+    e.target.value = input;
+  }
   return (
     <>
-      {/* mobile */}
       <div className="max-w-screen flex items-center justify-between lg:justify-center p-3 bg-timbuBlack text-timbuWhite text-[10px]">
         <div className="flex items-center justfy-center flex-col">
           <img src={checkedCircle} alt="" />
@@ -38,7 +55,7 @@ const Checkout = () => {
       </p>
       <div className="flex items-start justify-center md:justify-around">
         <div>
-          <div className="w-[90%] mx-auto flex items-start justify-start flex-col mt-7 border-b border-b-timbuGrey pb-10 mb-10">
+          <div className="w-[90%] mx-auto flex items-start justify-start flex-col mt-7 border-b border-b-timbuGrey lg:border-0 pb-10 mb-10">
             <h3 className="font-semibold text-base">Payment Method</h3>
             <p className="text-sm">Choose your preferred payment method</p>
             <form className="flex items-center justify-between mt-4">
@@ -58,7 +75,7 @@ const Checkout = () => {
           </div>
           <div className="w-[90%] mx-auto">
             <h3 className="font-semibold text-base mb-2">Payment Details</h3>
-            <form className="border-b border-timbuGrey pb-7 mb-7">
+            <form className="border-b border-timbuGrey pb-7 mb-7 lg:border-0">
               <label htmlFor="cardName" className="text-sm font-medium">
                 Name on Card <br />
                 <input
@@ -85,6 +102,7 @@ const Checkout = () => {
                   type="text"
                   id="expiryDate"
                   placeholder="MM/YY"
+                  onInput={dateInputFormat}
                   className="w-1/3 py-2 pl-[5px] border border-timbuBlack rounded-md"
                 />
               </label>
@@ -160,7 +178,7 @@ const Checkout = () => {
         </div>
         {/* don't include */}
         <div className="lg:flex items-start justify-center">
-          <div className="font-semibold border-2 border-timbuGrey p-2 my-7 w-[90%] mx-auto rounded-md lg:mr-2">
+          <div className="font-semibold border-2 border-timbuGrey lg:border-0 p-2 my-7 w-[90%] mx-auto rounded-md lg:mr-2">
             <h2 className="rounded-md text-center bg-timbuBlue font-semibold text-base p-3 mb-7 lg:text-2xl">
               Order Summary
             </h2>
