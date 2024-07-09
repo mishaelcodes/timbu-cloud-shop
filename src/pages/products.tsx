@@ -34,7 +34,7 @@ const Products = () => {
       productRating: "4.2",
     },
     {
-      productName: "Red heart white mug",
+      productName: "Red heart mug",
       productImage: heartCup,
       productPrice: "6,500.00",
       productRating: "4.1",
@@ -82,7 +82,7 @@ const Products = () => {
       productRating: "4.5",
     },
     {
-      productName: '"Best boss ever" mug',
+      productName: '"Best boss" mug',
       productImage: bestBossMug,
       productPrice: "6,000.00",
       productRating: "4.1",

@@ -31,12 +31,13 @@ const CartComponent = () => {
               <div className="mr-1">
                 <img src={abMug} alt="product ab mug" />
               </div>
+              {/* mobile */}
               <div className="lg:hidden">
                 <div>
                   <p>Classic AB Mug</p>
                   <p className="text-timbuRed font-semibold">N7499.99</p>
                 </div>
-                <div className="flex items-center justify-evenly text-center border-2 border-timbuGrey rounded-md">
+                <div className="flex items-center justify-evenly text-center border-2 border-timbuGrey rounded-md mt-4">
                   <img
                     src={minus}
                     alt=""
