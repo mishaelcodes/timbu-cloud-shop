@@ -27,6 +27,7 @@ import Button from "../components/button";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Header from "../components/header";
+import Pagination from "../components/pagination";
 
 export interface Product {
   name: string;
@@ -51,10 +52,47 @@ export interface Product {
   ];
 }
 
+interface CartItem extends Product {
+  quantity: number;
+}
+
 const Products = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [numberOfProducts, setNumberOfProducts] = useState(0);
+  const [, setCart] = useState<CartItem[]>([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [productsPerPage] = useState(10);
+
+  const addToCart = (product: Product) => {
+    const cartItems = JSON.parse(localStorage.getItem("cart") || "[]");
+    const productIndex = cartItems.findIndex(
+      (item: { id: string }) => item.id === product.unique_id
+    );
+
+    if (productIndex !== -1) {
+      // Product already exists, show a message or handle accordingly
+      console.log("Product already in cart");
+      return; // Exit the function
+    }
+
+    cartItems.push({ ...product, quantity: 1 });
+    setCart(cartItems);
+    localStorage.setItem("cart", JSON.stringify(cartItems));
+
+    setCart(cartItems);
+    localStorage.setItem("cart", JSON.stringify(cartItems));
+    alert(`${product.name} added to cart`);
+  };
+
+  const indexOfLastProduct = currentPage * productsPerPage;
+  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+  const currentProducts = products.slice(
+    indexOfFirstProduct,
+    indexOfLastProduct
+  );
+
+  const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
   const API_KEY = "90aec84e95284d7f8ce7ac982ad916a920240712130613816586";
   const APP_ID = "RT6WUUXGARFTKO0";
@@ -62,6 +100,11 @@ const Products = () => {
   const url = `/api/products?organization_id=${ORGANIZATION_ID}&Appid=${APP_ID}&Apikey=${API_KEY}`;
 
   useEffect(() => {
+    const storedCart = localStorage.getItem("cart");
+    if (storedCart) {
+      setCart(JSON.parse(storedCart));
+    }
+
     const fetchData = async () => {
       setIsLoading(true);
       try {
@@ -95,7 +138,7 @@ const Products = () => {
           <p>Loading</p>
         ) : (
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-3">
-            {products.map((product: Product) => (
+            {currentProducts.map((product: Product) => (
               <div
                 key={product.unique_id}
                 className="border-2 border-timbuGrey rounded-md py-[10px] px-1"
@@ -116,11 +159,16 @@ const Products = () => {
                 <img src={star} alt="star icon" /> {product.productRating}
               </p> */}
                 </Link>
-                <Link to="/cart">
+                <div onClick={() => addToCart(product)}>
                   <Button content="Add to cart" width="w-full" />
-                </Link>
+                </div>
               </div>
             ))}
+            <Pagination
+              totalPages={Math.ceil(products.length / productsPerPage)}
+              currentPage={currentPage}
+              onPageChange={paginate}
+            />
           </div>
         )}
       </div>
