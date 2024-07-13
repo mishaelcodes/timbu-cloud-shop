@@ -1,13 +1,13 @@
 import checkedCircle from "../assets/icon/check-circle.png";
 import radioMarked from "../assets/icon/radiobox-marked.png";
 import radioDisabled from "../assets/icon/radiobox-marked-disabled.png";
-import backButton from "../assets/icon/back-button.png";
 import paypal from "../assets/icon/paypal.png";
 import masterCard from "../assets/icon/mastercard.png";
 import visa from "../assets/icon/visa.png";
 import Button from "../components/button";
 import abMug from "../assets/images/products/abMugSmall.png";
 import { Link } from "react-router-dom";
+import BackButton from "../components/backButton";
 
 const Checkout = () => {
   const dateInputFormat = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -50,10 +50,7 @@ const Checkout = () => {
           <p>Confirmation</p>
         </div>
       </div>
-      <p className="font-semiboold flex text-base mt-5 ml-3 lg:text-2xl">
-        <img src={backButton} alt="" className="mr-2" />
-        Checkout
-      </p>
+      <BackButton context="Checkout"/>
       <div className="md:flex items-start justify-center md:justify-around">
         <div>
           <div className="w-[90%] mx-auto flex items-start justify-start flex-col mt-7 border-b border-b-timbuGrey lg:border-0 pb-10 mb-10">

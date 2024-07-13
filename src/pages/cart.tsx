@@ -1,4 +1,4 @@
-import backButton from "../assets/icon/back-button.png";
+// import backButton from "../assets/icon/back-button.png";
 import trash from "../assets/icon/trash.png";
 import plus from "../assets/icon/plus.png";
 import minus from "../assets/icon/minus.png";
@@ -7,6 +7,7 @@ import Button from "../components/button";
 import { Link } from "react-router-dom";
 import useCounter from "../hooks/counter-hook";
 import Header from "../components/header";
+import BackButton from "../components/backButton";
 const CartComponent = () => {
   const { increase, decrease, count } = useCounter();
   return (
@@ -19,9 +20,7 @@ const CartComponent = () => {
             {/* cart header */}
             <div className="flex items-center justify-between">
               {/* cart icon */}
-              <div className="flex items-center justify-between lg:text-2xl">
-                <img src={backButton} alt="" /> <p>Cart</p>
-              </div>
+              <BackButton context="Cart"/>
               <p>1 item</p>
             </div>
             {/* cart order */}
