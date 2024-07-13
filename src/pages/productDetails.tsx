@@ -6,10 +6,17 @@ import minus from "../assets/icon/minus.png";
 import plus from "../assets/icon/plus.png";
 import useCounter from "../hooks/counter-hook";
 import Button from "../components/button";
+import backButton from "../assets/icon/back-button.png";
+
+//
+interface ModifiedProduct extends Product {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  current_price: any;
+}
 const ProductDetails = () => {
   const { url_slug } = useParams();
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [product, setProduct] = useState<Product | null>(null);
+  const [product, setProduct] = useState<ModifiedProduct | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const { increase, decrease, count } = useCounter();
 
@@ -23,14 +30,17 @@ const ProductDetails = () => {
     const fetchProduct = async () => {
       setIsLoading(true);
       try {
-        // const response = await fetch(`/api/products/${productId}`);
+        // fetch the api
         const response = await fetch(url);
+        // check if response status is not in the green
         if (!response.ok) {
           console.error(response.status, response.statusText);
           throw new Error("Network response not ok");
         }
+        // convert response data to json
         const data = await response.json();
         console.log(data);
+        // assign product to the data fetched
         setProduct(data);
       } catch (error) {
         console.error("Error fetching product data: ", error);
@@ -48,38 +58,49 @@ const ProductDetails = () => {
         <>
           <Header />
           <div className="w-[90%] mx-auto">
-            <img
-              src={`https://api.timbu.cloud/images/${product?.photos[0]?.url}`}
-              alt=""
-            />
+            <p className="font-semiboold flex text-base mt-5 mb-5 ml-3 lg:text-2xl">
+              <img src={backButton} alt="" className="mr-2" />
+              Checkout
+            </p>
             <div>
-              {/* product rating */}
-              <h1>{product?.name}</h1>
-              <p>{/*product description */}</p>
-              <p>{product?.available_quantity} in stock</p>
-            </div>
-            <div>
-              <div className="flex items-center justify-evenly text-center border-2 border-timbuGrey rounded-md w-1/5">
-                <img
-                  src={minus}
-                  alt=""
-                  onClick={decrease}
-                  className="active:scale-75 transition-all"
-                />
-                <p>{count}</p>
-                <img
-                  src={plus}
-                  alt=""
-                  onClick={increase}
-                  className="active:scale-75 transition-all"
-                />
+              <img
+                src={`https://api.timbu.cloud/images/${product?.photos[0]?.url}`}
+                alt=""
+              />
+              <div className="mb-2">
+                {/* product rating */}
+                <h1 className="font-medium text-2xl mt-2">{product?.name}</h1>
+                <p className="font-regular text-base my-2">{product?.description}</p>
+                <p className="font-regular text-base text-[#B9B4B4]">
+                  {product?.available_quantity} in stock
+                </p>
               </div>
-            </div>
-            <div>
-              <Button content="Add to cart" width="w-full" />
-              <button className="w-full mt-4 text-sm py-2 px-8 text-center bg-timbuWhite text-timbuBlack font-regular rounded-md border-2 border-timbuBlack hover:bg-timbuBlue hover:font-semibold transition-all">
-                Add to wishlist
-              </button>
+              <div className="mb-3">
+                <p className="font-medium text-2xl text-timbuRed mb-2">
+                  N{product?.current_price}
+                </p>
+                <div className="flex items-center justify-evenly text-center border-2 border-timbuGrey rounded-md w-1/5">
+                  <img
+                    src={minus}
+                    alt=""
+                    onClick={decrease}
+                    className="active:scale-75 transition-all"
+                  />
+                  <p>{count}</p>
+                  <img
+                    src={plus}
+                    alt=""
+                    onClick={increase}
+                    className="active:scale-75 transition-all"
+                  />
+                </div>
+              </div>
+              <div>
+                <Button content="Add to cart" width="w-full" />
+                <button className="w-full mt-4 text-sm py-2 px-8 text-center bg-timbuWhite text-timbuBlack font-regular rounded-md border-2 border-timbuBlack hover:bg-timbuBlue hover:font-semibold transition-all">
+                  Add to wishlist
+                </button>
+              </div>
             </div>
           </div>
         </>

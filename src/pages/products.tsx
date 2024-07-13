@@ -33,6 +33,7 @@ export interface Product {
   unique_id: string;
   url_slug: string;
   available_quantity: number;
+  description: string;
   photos: [
     {
       url: string;
