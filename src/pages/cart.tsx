@@ -4,19 +4,10 @@ import plus from "../assets/icon/plus.png";
 import minus from "../assets/icon/minus.png";
 import abMug from "../assets/images/products/abMugSmall.png";
 import Button from "../components/button";
-import { useState } from "react";
 import { Link } from "react-router-dom";
+import useCounter from "../hooks/counter-hook";
 const CartComponent = () => {
-  const [count, setCount] = useState(1);
-
-  const decrease = () => {
-    if (count > 1) {
-      setCount(count - 1);
-    }
-  };
-  const increase = () => {
-    setCount(count + 1);
-  };
+  const {increase, decrease, count} = useCounter()
   return (
     <div className="w-[90%] mx-auto mb-5 font-semibold min-h-[50vh] lg:min-h-[60vh]">
       <div className="md:flex items-start justify-between mt-5">

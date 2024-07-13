@@ -27,14 +27,16 @@ import Button from "../components/button";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 
-interface Product {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+export interface Product {
+  name: string;
+  unique_id: string;
+  url_slug: string;
+  available_quantity: number
   photos: [
     {
-      url: string
+      url: string;
     }
   ];
-  name: string;
   current_price: [
     {
       NGN: {
@@ -50,11 +52,13 @@ interface Product {
 const Products = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState(false);
-
+  const [numberOfProducts, setNumberOfProducts] = useState(0)
+  
   const API_KEY = "90aec84e95284d7f8ce7ac982ad916a920240712130613816586";
   const APP_ID = "RT6WUUXGARFTKO0";
   const ORGANIZATION_ID = "7dbe45f8639b411bb715356cc3c02b37";
-  const url = `api/products?organization_id=${ORGANIZATION_ID}&Appid=${APP_ID}&Apikey=${API_KEY}`;
+  const url = `/api/products?organization_id=${ORGANIZATION_ID}&Appid=${APP_ID}&Apikey=${API_KEY}`;
+  
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true);
@@ -65,6 +69,7 @@ const Products = () => {
         }
         const data = await response.json();
         console.log(data);
+        setNumberOfProducts(data.items.length)
         setProducts(data.items);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -79,19 +84,26 @@ const Products = () => {
   return (
     <div className="w-[85%] mx-auto mb-5">
       <h2 className="font-semibold text-base mt-3 mb-6 md:mt-12 md:mb-8">
-        Products list <span className="text-gray-400">(20)</span>
+        Products list{" "}
+        <span className="text-gray-400">({numberOfProducts})</span>
       </h2>
       {isLoading ? (
         <p>Loading</p>
       ) : (
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-3">
-          {products.map((product: Product, index) => (
+          {products.map((product: Product) => (
             <div
-              key={index}
+              key={product.unique_id}
               className="border-2 border-timbuGrey rounded-md py-[10px] px-1"
             >
-              <img src={`https://api.timbu.cloud/images/${product.photos[0]?.url}`} alt="" />
-              <div className="mb-1">
+              <img
+                src={`https://api.timbu.cloud/images/${product.photos[0]?.url}`}
+                alt=""
+              />
+              <Link
+                to={`/product/${product.url_slug}`}
+                className="mb-1 min-h-24 max-h-24 flex items-start justify-between flex-col"
+              >
                 <p className="font-semibold text-sm mt-1">{product.name}</p>
                 <p className="text-timbuRed font-medium text-sm my-1">
                   N{product.current_price[0].NGN[0]}
@@ -99,7 +111,7 @@ const Products = () => {
                 {/* <p className="font-semibold flex items-center justify-start">
                 <img src={star} alt="star icon" /> {product.productRating}
               </p> */}
-              </div>
+              </Link>
               <Link to="/cart">
                 <Button content="Add to cart" width="w-full" />
               </Link>

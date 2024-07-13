@@ -4,6 +4,7 @@ import Cart from "./pages/cart";
 import Layout from "./pages/layout";
 import Checkout from "./pages/checkout";
 import Confirmation from "./pages/confirmation";
+import ProductDetails from "./pages/productDetails";
 
 const App = createBrowserRouter([
   {
@@ -13,6 +14,10 @@ const App = createBrowserRouter([
       {
         index: true,
         element: <Products />,
+      },
+      {
+        path: "/product/:url_slug",
+        element: <ProductDetails/>
       },
       {
         path: "cart",
