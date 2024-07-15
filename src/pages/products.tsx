@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Header from "../components/header";
 import Pagination from "../components/pagination";
+import Loader from "../loader/loader";
 
 export interface Product {
   name: string;
@@ -113,9 +114,9 @@ const Products = () => {
           <span className="text-gray-400">({numberOfProducts})</span>
         </h2>
         {isLoading ? (
-          <p>Loading</p>
+          <Loader />
         ) : (
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-3">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-3 mb-5">
             {currentProducts.map((product: Product) => (
               <div
                 key={product.unique_id}
@@ -142,13 +143,13 @@ const Products = () => {
                 </div>
               </div>
             ))}
-            <Pagination
-              totalPages={Math.ceil(products.length / productsPerPage)}
-              currentPage={currentPage}
-              onPageChange={paginate}
-            />
           </div>
         )}
+        <Pagination
+          totalPages={Math.ceil(products.length / productsPerPage)}
+          currentPage={currentPage}
+          onPageChange={paginate}
+        />
       </div>
     </>
   );
