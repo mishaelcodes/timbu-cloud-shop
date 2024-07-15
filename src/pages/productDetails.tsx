@@ -57,8 +57,8 @@ const ProductDetails = () => {
       ) : (
         <>
           <Header />
-          <div className="w-[95%] mx-auto">
-            <BackButton context="Product details"/>
+          <div className="w-[95%] mx-auto min-h-[55vh]">
+            <BackButton context="Product details" />
             <div className="lg:flex items-start justify-between">
               <div className="md:w-1/2 lg:w-3/4 lg:mr-20">
                 <img
@@ -99,7 +99,9 @@ const ProductDetails = () => {
                   </div>
                 </div>
                 <div className="lg:flex items-start justify-between flex-col">
-                  <Button content="Add to cart" width="w-full lg:w-1/2" />
+                  <div onClick={() => alert("Button not working due to bug. Please add to cart from the product listing page")} className="lg:w-1/2">
+                    <Button content="Add to cart" width="w-full lg:w-full" />
+                  </div>
                   <button className="w-full lg:w-1/2 mt-4 text-sm py-2 px-8 text-center bg-timbuWhite text-timbuBlack font-regular rounded-md border-2 border-timbuBlack hover:bg-timbuBlue hover:font-semibold transition-all">
                     Add to wishlist
                   </button>

@@ -23,7 +23,7 @@ const Hero = () => {
 
   return (
     <header>
-      <nav className="max-w-screen flex items-center justify-between p-8 bg-timbuBlack">
+      <nav className="max-w-screen flex items-center justify-between p-8 bg-timbuBlack mb-7">
         <Link to="/">
           <h1 className="font-semibold text-timbuWhite">TimbuCloudShop</h1>
         </Link>

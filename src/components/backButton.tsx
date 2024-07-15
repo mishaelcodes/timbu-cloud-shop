@@ -13,7 +13,7 @@ const BackButton = (text: Text) => {
 
   return (
     <p
-      className="font-semiboold flex text-base lg:my-5 ml-3 lg:text-2xl"
+      className="font-semiboold flex text-base mb-7 ml-3 lg:text-2xl cursor-pointer"
       onClick={goToPreviousPage}
     >
       <img src={backButton} alt="" className="mr-2" />

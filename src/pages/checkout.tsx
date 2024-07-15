@@ -30,7 +30,7 @@ const Checkout = () => {
   }
   return (
     <>
-      <div className="max-w-screen flex items-center justify-between lg:justify-center p-3 bg-timbuBlack text-timbuWhite text-[10px]">
+      <div className="max-w-screen flex items-center justify-between lg:justify-center p-3 mb-7  bg-timbuBlack text-timbuWhite text-[10px]">
         <div className="flex items-center justfy-center flex-col">
           <img src={checkedCircle} alt="" />
           <p>Order Summary</p>
