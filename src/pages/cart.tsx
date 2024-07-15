@@ -92,12 +92,13 @@ const CartComponent = () => {
                       className="flex items-center lg:items-start justify-between mt-5 border border-timbuGrey rounded-md p-2"
                     >
                       <div className="flex items-center justify-center lg:w-full lg:h-full">
-                        <div className="mr-1">
+                        <div>
                           <img
                             src={`https://api.timbu.cloud/images/${item.photos[0]?.url}`}
                             alt="product image"
-                            className="w-[250px] lg:w-full"
+                            className="w-[250px]"
                           />
+                          
                         </div>
                         <div className="lg:hidden">
                           <div className="mb-3">
@@ -125,6 +126,7 @@ const CartComponent = () => {
                             </button>
                           </div>
                         </div>
+                        {/* desktop */}
                         <div className="hidden lg:flex items-start justify-between h-full w-full pr-3">
                           <p className="w-1/3">{item.name}</p>
                           <div className="flex items-center">
