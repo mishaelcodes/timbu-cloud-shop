@@ -56,9 +56,9 @@ const CartComponent = () => {
     <>
       <Header />
       <div className="w-[90%] mx-auto mb-5 font-semibold min-h-[50vh] lg:min-h-[60vh] lg:flex">
-        <div className="md:flex items-start justify-between">
+        <div className="md:flex items-start lg:w-[90%] justify-between">
           {/* cart section */}
-          <div className="md:w-[50%] lg:w-[90%] items-center justify-between">
+          <div className="md:w-[50%] lg:w-[80%] items-center justify-between">
             {/* cart header */}
             <div className="flex items-center justify-between">
               {/* cart icon */}
@@ -67,12 +67,12 @@ const CartComponent = () => {
             </div>
             {/* Desktop Only */}
             <div className="hidden lg:flex items-center justify-between mt-10 -mb-5 text-[#1b1c1d80] text-base xl:text-2xl">
-              <p className="mr-12 flex items-center">
+              <p className="mr-12 flex items-center w-[40%]">
                 <input type="checkbox" className="mr-2 w-5 h-5 rounded-md" />
                 PRODUCTS
               </p>
-              <p className="ml-12">QUANTITY</p>
-              <p className="xl:ml-10">PRICE</p>
+              <p>QUANTITY</p>
+              <p>PRICE</p>
               <p>REMOVE</p>
             </div>
             <div className="mt-5">
@@ -98,7 +98,6 @@ const CartComponent = () => {
                             alt="product image"
                             className="w-[250px]"
                           />
-                          
                         </div>
                         <div className="lg:hidden">
                           <div className="mb-3">
@@ -148,12 +147,13 @@ const CartComponent = () => {
                             </button>
                           </div>
                           <p className="text-timbuRed font-semibold">
-                            {item.current_price[0].NGN[0]}
+                            N{item.current_price[0].NGN[0]}
                           </p>
                           <img
                             src={trash}
                             alt="delete icon"
                             className="hidden lg:block"
+                            onClick={() => handleRemoveItem(item.id)}
                           />
                         </div>
                         <button onClick={() => handleRemoveItem(item.id)}>
