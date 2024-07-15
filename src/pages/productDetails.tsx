@@ -7,6 +7,7 @@ import plus from "../assets/icon/plus.png";
 import useCounter from "../hooks/counter-hook";
 import Button from "../components/button";
 import BackButton from "../components/backButton";
+import Loader from "../loader/loader";
 
 //
 interface ModifiedProduct extends Product {
@@ -53,7 +54,7 @@ const ProductDetails = () => {
   return (
     <>
       {isLoading ? (
-        <p>Loading...</p>
+        <Loader />
       ) : (
         <>
           <Header />
