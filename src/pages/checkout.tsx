@@ -6,7 +6,7 @@ import masterCard from "../assets/icon/mastercard.png";
 import visa from "../assets/icon/visa.png";
 import Button from "../components/button";
 import BackButton from "../components/backButton";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 interface CartItem {
@@ -31,8 +31,46 @@ interface CartItem {
 }
 
 const Checkout = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  const [cardName, setCardName] = useState("");
+  const [cardNumber, setCardNumber] = useState("");
+  const [cvv, setCvv] = useState("");
+  const [name, setName] = useState("");
+  const [address, setAddress] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [city, setCity] = useState("");
+  const [state, setState] = useState("");
+  const [zip, setZip] = useState("");
+  const [error, setError] = useState("");
+  // handle form change/input events
+  const handleCardNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setCardName(e.target.value);
+  };
+  const handleCardNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setCardNumber(e.target.value);
+  };
+  const handleCvvChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setCvv(e.target.value);
+  };
+  const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setName(e.target.value);
+  };
+  const handleAddressChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setAddress(e.target.value);
+  };
+  const handleCityChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setCity(e.target.value);
+  };
+  const handleStateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setState(e.target.value);
+  };
+  const handleZipChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setZip(e.target.value);
+  };
+  const handlePhoneNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPhoneNumber(e.target.value);
+  };
 
   const dateInputFormat = (e: React.ChangeEvent<HTMLInputElement>) => {
     let input = e.target.value;
@@ -75,9 +113,24 @@ const Checkout = () => {
   };
   const { totalPrice, shippingCost } = calculateTotals();
 
-  const payFunction = () =>  {
-    navigate("/confirmation")
-  }
+  const payFunction = () => {
+    if (
+      cardName &&
+      cvv &&
+      cardNumber &&
+      name &&
+      address &&
+      phoneNumber &&
+      city &&
+      state &&
+      zip
+    ) {
+      localStorage.clear();
+      navigate("/confirmation");
+    } else {
+      setError("Please fill in all fields");
+    }
+  };
   useEffect(() => {
     const cartItemsFromStorage = getCartItems();
     setCartItems(cartItemsFromStorage);
@@ -127,6 +180,7 @@ const Checkout = () => {
           </div>
           <div className="w-[90%] mx-auto">
             <h3 className="font-semibold text-base mb-2">Payment Details</h3>
+            <p className="text-timbuRed">{error ? error : ""}</p>
             <form className="border-b border-timbuGrey pb-7 mb-7 lg:border-0">
               <label htmlFor="cardName" className="text-sm font-medium">
                 Name on Card <br />
@@ -134,6 +188,7 @@ const Checkout = () => {
                   type="text"
                   id="cardName"
                   placeholder="John Johnson"
+                  onChange={handleCardNameChange}
                   className="w-full py-2 pr-[120px] pl-[5px] border border-timbuBlack rounded-md"
                   required
                 />
@@ -145,6 +200,7 @@ const Checkout = () => {
                   type="number"
                   id="cardNumber"
                   placeholder="**** **** **** 3434"
+                  onChange={handleCardNumberChange}
                   className="w-full py-2 pr-[120px] pl-[5px] border border-timbuBlack rounded-md"
                   required
                 />
@@ -169,6 +225,7 @@ const Checkout = () => {
                   id="cvv"
                   placeholder="123"
                   maxLength={3}
+                  onChange={handleCvvChange}
                   className="w-1/4 py-2 pl-[5px] border border-timbuBlack rounded-md"
                   required
                 />
@@ -181,6 +238,7 @@ const Checkout = () => {
                 <input
                   type="text"
                   id="name"
+                  onChange={handleNameChange}
                   className="w-full py-2 pr-[120px] pl-[5px] border border-timbuBlack rounded-md"
                   required
                 />
@@ -191,6 +249,7 @@ const Checkout = () => {
                 <input
                   type="text"
                   id="address"
+                  onChange={handleAddressChange}
                   className="w-full pr-[120px] py-2 pl-[5px] border border-timbuBlack rounded-md"
                   required
                 />
@@ -201,6 +260,7 @@ const Checkout = () => {
                 <input
                   type="tel"
                   id="phoneNumber"
+                  onChange={handlePhoneNumberChange}
                   className="w-full py-2 pr-[120px] pl-[5px] border border-timbuBlack rounded-md"
                 />
               </label>
@@ -210,6 +270,7 @@ const Checkout = () => {
                 <input
                   type="text"
                   id="city"
+                  onChange={handleCityChange}
                   className="w-1/2 py-2 pl-[5px] border border-timbuBlack rounded-md"
                 />
               </label>
@@ -219,6 +280,7 @@ const Checkout = () => {
                 <input
                   type="number"
                   id="state"
+                  onChange={handleStateChange}
                   className="w-1/2 py-2 pl-[5px] border border-timbuBlack rounded-md"
                 />
               </label>
@@ -228,6 +290,7 @@ const Checkout = () => {
                 <input
                   type="number"
                   id="zip"
+                  onChange={handleZipChange}
                   className="w-1/2 py-2 pl-[5px] border border-timbuBlack rounded-md mb-5"
                   required
                 />
@@ -239,7 +302,7 @@ const Checkout = () => {
             </form>
           </div>
         </div>
-        <div className="lg:flex items-start justify-center">
+        <div className="lg:flex items-start justify-center lg:flex-col">
           <div className="font-semibold border-2 border-timbuGrey lg:border-0 p-2 my-7 w-[90%] mx-auto rounded-md lg:mr-2">
             <h2 className="rounded-md text-center bg-timbuBlue font-semibold text-base p-3 mb-7 lg:text-2xl">
               Order Summary
@@ -261,7 +324,7 @@ const Checkout = () => {
               <p>N{totalPrice + shippingCost}</p>
             </div>
           </div>
-          <div className="flex items-center justify-start border border-timbuGrey p-5 my-7 w-[90%] mx-auto rounded-md lg:border-0 lg:p-0">
+          <div className="flex items-center justify-start lg:flex-col border border-timbuGrey p-5 my-7 w-[90%] mx-auto rounded-md lg:border-0 lg:p-0">
             {cartItems?.map((item) => (
               <div
                 key={item.id}
