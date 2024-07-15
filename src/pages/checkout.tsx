@@ -296,9 +296,9 @@ const Checkout = () => {
                 />
               </label>
               <br />
-              <button type="submit" className="w-full" onClick={payFunction}>
+              <div className="w-full" onClick={payFunction}>
                 <Button content="Pay now" width="w-full" />
-              </button>
+              </div>
             </form>
           </div>
         </div>
@@ -324,7 +324,7 @@ const Checkout = () => {
               <p>N{totalPrice + shippingCost}</p>
             </div>
           </div>
-          <div className="flex items-center justify-start lg:flex-col border border-timbuGrey p-5 my-7 w-[90%] mx-auto rounded-md lg:border-0 lg:p-0">
+          <div className="flex items-center justify-start flex-col border border-timbuGrey p-5 my-7 w-[90%] mx-auto rounded-md lg:border-0 lg:p-0">
             {cartItems?.map((item) => (
               <div
                 key={item.id}
