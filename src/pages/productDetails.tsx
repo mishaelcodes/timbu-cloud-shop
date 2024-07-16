@@ -20,13 +20,13 @@ const ProductDetails = () => {
   const [product, setProduct] = useState<ModifiedProduct | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const { increase, decrease, count } = useCounter();
+  const [error, setError] = useState(false);
 
   const API_KEY = "90aec84e95284d7f8ce7ac982ad916a920240712130613816586";
   const APP_ID = "RT6WUUXGARFTKO0";
   const ORGANIZATION_ID = "7dbe45f8639b411bb715356cc3c02b37";
   const url = `/api/products/${url_slug}?organization_id=${ORGANIZATION_ID}&Appid=${APP_ID}&Apikey=${API_KEY}`;
 
-  // const url2 = "https:/api.timbu.cloud/products/TI191875P?organization_id=7dbe45f8639b411bb715356cc3c02b37";
   useEffect(() => {
     const fetchProduct = async () => {
       setIsLoading(true);
@@ -61,11 +61,17 @@ const ProductDetails = () => {
           <div className="w-[95%] mx-auto min-h-[55vh]">
             <BackButton context="Product details" />
             <div className="lg:flex items-start justify-between">
-              <div className="md:w-1/2 lg:w-3/4 lg:mr-20">
+              {error && (
+                <p className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] rounded-md shadow-md bg-timbuWhite p-4">
+                  Please be patient with us as we fix this error. In the
+                  meantime, you can add your item to cart from the product
+                  listing page
+                </p>
+              )}
+              <div className=" lg:w-3/4 lg:mr-20 flex items-center justify-center">
                 <img
                   src={`https://api.timbu.cloud/images/${product?.photos[0]?.url}`}
                   alt=""
-                  className="mr-20"
                 />
               </div>
               <div>
@@ -100,7 +106,15 @@ const ProductDetails = () => {
                   </div>
                 </div>
                 <div className="lg:flex items-start justify-between flex-col">
-                  <div onClick={() => alert("Button not working due to bug. Please add to cart from the product listing page")} className="lg:w-1/2">
+                  <div
+                    onClick={() => {
+                      setError(true);
+                      setTimeout(() => {
+                        setError(false);
+                      }, 7000);
+                    }}
+                    className="lg:w-1/2"
+                  >
                     <Button content="Add to cart" width="w-full lg:w-full" />
                   </div>
                   <button className="w-full lg:w-1/2 mt-4 text-sm py-2 px-8 text-center bg-timbuWhite text-timbuBlack font-regular rounded-md border-2 border-timbuBlack hover:bg-timbuBlue hover:font-semibold transition-all">

@@ -38,6 +38,7 @@ const CartComponent = () => {
     const updatedCart = cartItems.filter((item: any) => item.id !== productId);
     setCartItems(updatedCart);
     localStorage.setItem("cart", JSON.stringify(updatedCart));
+    location.reload()
   };
 
   const handleQuantityChange = (productId: string, newQuantity: number) => {

@@ -180,7 +180,7 @@ const Checkout = () => {
           </div>
           <div className="w-[90%] mx-auto">
             <h3 className="font-semibold text-base mb-2">Payment Details</h3>
-            <p className="text-timbuRed">{error ? error : ""}</p>
+            <p className="text-timbuRed" id="error">{error ? error : ""}</p>
             <form className="border-b border-timbuGrey pb-7 mb-7 lg:border-0">
               <label htmlFor="cardName" className="text-sm font-medium">
                 Name on Card <br />
@@ -189,7 +189,7 @@ const Checkout = () => {
                   id="cardName"
                   placeholder="John Johnson"
                   onChange={handleCardNameChange}
-                  className="w-full py-2 pr-[120px] pl-[5px] border border-timbuBlack rounded-md"
+                  className="w-full py-2 pl-[5px] border border-timbuBlack rounded-md"
                   required
                 />
               </label>
@@ -201,7 +201,7 @@ const Checkout = () => {
                   id="cardNumber"
                   placeholder="**** **** **** 3434"
                   onChange={handleCardNumberChange}
-                  className="w-full py-2 pr-[120px] pl-[5px] border border-timbuBlack rounded-md"
+                  className="w-full py-2 pl-[5px] border border-timbuBlack rounded-md"
                   required
                 />
               </label>
@@ -239,7 +239,7 @@ const Checkout = () => {
                   type="text"
                   id="name"
                   onChange={handleNameChange}
-                  className="w-full py-2 pr-[120px] pl-[5px] border border-timbuBlack rounded-md"
+                  className="w-full py-2 pl-[5px] border border-timbuBlack rounded-md"
                   required
                 />
               </label>
@@ -250,7 +250,7 @@ const Checkout = () => {
                   type="text"
                   id="address"
                   onChange={handleAddressChange}
-                  className="w-full pr-[120px] py-2 pl-[5px] border border-timbuBlack rounded-md"
+                  className="w-full py-2 pl-[5px] border border-timbuBlack rounded-md"
                   required
                 />
               </label>
@@ -265,26 +265,27 @@ const Checkout = () => {
                 />
               </label>
               <br />
-              <label htmlFor="city" className="text-sm font-medium">
-                City <br />
-                <input
-                  type="text"
-                  id="city"
-                  onChange={handleCityChange}
-                  className="w-1/2 py-2 pl-[5px] border border-timbuBlack rounded-md"
-                />
-              </label>
-              <br />
-              <label htmlFor="state" className="text-sm font-medium">
-                State <br />
-                <input
-                  type="number"
-                  id="state"
-                  onChange={handleStateChange}
-                  className="w-1/2 py-2 pl-[5px] border border-timbuBlack rounded-md"
-                />
-              </label>
-              <br />
+              <div className="lg:flex lg:gap-2">
+                <label htmlFor="city" className="text-sm font-medium">
+                  City <br />
+                  <input
+                    type="text"
+                    id="city"
+                    onChange={handleCityChange}
+                    className="w-1/2 lg:w-full py-2 pl-[5px] border border-timbuBlack rounded-md"
+                  />
+                </label>
+                <br />
+                <label htmlFor="state" className="text-sm font-medium">
+                  State <br />
+                  <input
+                    type="number"
+                    id="state"
+                    onChange={handleStateChange}
+                    className="w-1/2 lg:w-full py-2 pl-[5px] border border-timbuBlack rounded-md"
+                  />
+                </label>
+              </div>
               <label htmlFor="zip" className="text-sm font-medium">
                 Zip <br />
                 <input

@@ -42,6 +42,8 @@ const Products = () => {
   const [, setCart] = useState<CartItem[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [productsPerPage] = useState(10);
+  const [showMessage, setShowMessage] = useState(false)
+  const [message, setMessage] = useState("")
 
   const addToCart = (product: Product) => {
     const cartItems = JSON.parse(localStorage.getItem("cart") || "[]");
@@ -56,12 +58,14 @@ const Products = () => {
     }
 
     cartItems.push({ ...product, quantity: 1 });
-    setCart(cartItems);
-    localStorage.setItem("cart", JSON.stringify(cartItems));
+    setShowMessage(true);
+    setMessage(`${product.name} has been added to cart`)
+    setTimeout(() => {
+      setShowMessage(false)
+    }, 3000)
+    /* setCart(cartItems);
+    localStorage.setItem("cart", JSON.stringify(cartItems)); */
 
-    setCart(cartItems);
-    localStorage.setItem("cart", JSON.stringify(cartItems));
-    alert(`${product.name} added to cart`);
   };
 
   const indexOfLastProduct = currentPage * productsPerPage;
@@ -113,6 +117,7 @@ const Products = () => {
           Products list{" "}
           <span className="text-gray-400">({numberOfProducts})</span>
         </h2>
+        {showMessage? <div className="absolute top-20 left-1/2 -translate-x-1/2 bg-timbuWhite w-[80%] rounded-md shadow-lg p-5 transition-all">{message}</div> : ""}
         {isLoading ? (
           <Loader />
         ) : (
