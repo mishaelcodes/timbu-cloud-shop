@@ -28,11 +28,13 @@ export interface Product {
         2: any[];
       };
     }
-  ];
+  ]
 }
 
-interface CartItem extends Product {
+export interface CartItem extends Product {
   quantity: number;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  current_price: any
 }
 
 const Products = () => {
@@ -63,8 +65,8 @@ const Products = () => {
     setTimeout(() => {
       setShowMessage(false)
     }, 3000)
-    /* setCart(cartItems);
-    localStorage.setItem("cart", JSON.stringify(cartItems)); */
+    setCart(cartItems);
+    localStorage.setItem("cart", JSON.stringify(cartItems));
 
   };
 
@@ -137,7 +139,7 @@ const Products = () => {
                 >
                   <p className="font-semibold text-sm mt-1">{product.name}</p>
                   <p className="text-timbuRed font-medium text-sm my-1">
-                    N{product.current_price[0].NGN[0]}
+                    N{product.current_price[0].NGN[0].toLocaleString()}
                   </p>
                   {/* <p className="font-semibold flex items-center justify-start">
                 <img src={star} alt="star icon" /> {product.productRating}

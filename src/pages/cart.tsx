@@ -4,12 +4,13 @@ import Button from "../components/button";
 import { Link } from "react-router-dom";
 import Header from "../components/header";
 import BackButton from "../components/backButton";
-import { Product } from "./products";
+// import { Product } from "./products";
 import { useEffect, useState } from "react";
 
-interface CartItem extends Product {
+/* interface CartItem extends Product {
   quantity: number;
-}
+} */
+import { CartItem } from "./products";
 const CartComponent = () => {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [totalPrice, setTotalPrice] = useState(0);
@@ -25,7 +26,7 @@ const CartComponent = () => {
   useEffect(() => {
     const calculateTotal = () => {
       const total = cartItems.reduce(
-        (acc, item) => acc + item.quantity * item.current_price[0].NGN[0],
+        (acc, item) => acc + item.quantity * item.current_price || acc + item.quantity * item.current_price[0].NGN[0],
         0
       );
       setTotalPrice(total);
@@ -38,7 +39,7 @@ const CartComponent = () => {
     const updatedCart = cartItems.filter((item: any) => item.id !== productId);
     setCartItems(updatedCart);
     localStorage.setItem("cart", JSON.stringify(updatedCart));
-    location.reload()
+    location.reload();
   };
 
   const handleQuantityChange = (productId: string, newQuantity: number) => {

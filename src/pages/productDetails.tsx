@@ -14,13 +14,45 @@ interface ModifiedProduct extends Product {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   current_price: any;
 }
+
+import { CartItem } from "./products";
+/* window.addEventListener('load', () => {
+  localStorage.clear()
+}) */
 const ProductDetails = () => {
   const { url_slug } = useParams();
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [product, setProduct] = useState<ModifiedProduct | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const { increase, decrease, count } = useCounter();
-  const [error, setError] = useState(false);
+  const [, setCart] = useState<CartItem[]>([]);
+  // const [error, setError] = useState(false);
+
+
+  const addToCart = () => {
+    if(product){
+      try {
+        const cartItems = JSON.parse(localStorage.getItem("cart") || "[]");
+        const productIndex = cartItems.findIndex(
+          (item: { id: string }) => item.id === product.unique_id
+        );
+
+        if (productIndex !== -1) {
+          console.log("Product already in cart");
+          // Display a message like "Product already added to cart"
+          return;
+        }
+
+        cartItems.push({ ...product, quantity: 1 });
+        setCart(cartItems);
+        localStorage.setItem("cart", JSON.stringify(cartItems));
+        // Display a success message like "Added to cart!"
+      } catch (error) {
+        console.error("Error adding product to cart:", error);
+        // Handle potential errors during JSON parsing or local storage
+      }
+    }
+  };
 
   const API_KEY = "90aec84e95284d7f8ce7ac982ad916a920240712130613816586";
   const APP_ID = "RT6WUUXGARFTKO0";
@@ -61,13 +93,13 @@ const ProductDetails = () => {
           <div className="w-[95%] mx-auto min-h-[55vh]">
             <BackButton context="Product details" />
             <div className="lg:flex items-start justify-between">
-              {error && (
+              {/* {error && (
                 <p className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] rounded-md shadow-md bg-timbuWhite p-4">
                   Please be patient with us as we fix this error. In the
                   meantime, you can add your item to cart from the product
                   listing page
                 </p>
-              )}
+              )} */}
               <div className=" lg:w-3/4 lg:mr-20 flex items-center justify-center">
                 <img
                   src={`https://api.timbu.cloud/images/${product?.photos[0]?.url}`}
@@ -107,12 +139,13 @@ const ProductDetails = () => {
                 </div>
                 <div className="lg:flex items-start justify-between flex-col">
                   <div
-                    onClick={() => {
+                    /* onClick={() => {
                       setError(true);
                       setTimeout(() => {
                         setError(false);
                       }, 7000);
-                    }}
+                    }} */
+                    onClick={addToCart}
                     className="lg:w-1/2"
                   >
                     <Button content="Add to cart" width="w-full lg:w-full" />
