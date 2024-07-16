@@ -15,9 +15,6 @@ const Hero = () => {
     if (storedCart) {
       setCartItems(JSON.parse(storedCart));
     }
-  }, []);
-
-  useEffect(() => {
     setCartItemCount(cartItems.reduce((acc, item) => acc + item.quantity, 0));
   }, [cartItems]);
 

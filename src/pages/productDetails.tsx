@@ -39,17 +39,14 @@ const ProductDetails = () => {
 
         if (productIndex !== -1) {
           console.log("Product already in cart");
-          // Display a message like "Product already added to cart"
           return;
         }
 
         cartItems.push({ ...product, quantity: 1 });
         setCart(cartItems);
         localStorage.setItem("cart", JSON.stringify(cartItems));
-        // Display a success message like "Added to cart!"
       } catch (error) {
         console.error("Error adding product to cart:", error);
-        // Handle potential errors during JSON parsing or local storage
       }
     }
   };
