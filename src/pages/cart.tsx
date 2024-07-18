@@ -24,7 +24,7 @@ const CartComponent = () => {
   }, []);
 
   useEffect(() => {
-    const calculateTotal = () => {
+    /* const calculateTotal = () => {
       const total = cartItems.reduce(
         (acc, item) =>
           acc +
@@ -32,6 +32,15 @@ const CartComponent = () => {
             (item.current_price?.[0]?.NGN[0] || item.current_price || 0),
         0
       );
+      setTotalPrice(total);
+    }; */
+    const calculateTotal = () => {
+      const total = cartItems.reduce((acc, item) => {
+        const price = Array.isArray(item.current_price)
+          ? item.current_price[0]?.NGN?.[0]
+          : item.current_price;
+        return acc + (price || 0) * item.quantity;
+      }, 0);
       setTotalPrice(total);
     };
     calculateTotal();
@@ -108,7 +117,10 @@ const CartComponent = () => {
                           <div className="mb-3">
                             <p>{item.name}</p>
                             <p className="text-timbuRed font-semibold mt-1">
-                              N{item.current_price?.[0]?.NGN[0] ? item.current_price[0].NGN[0] : item.current_price}
+                              N
+                              {Array.isArray(item.current_price)
+                                ? item.current_price[0]?.NGN?.[0]
+                                : item.current_price}
                             </p>
                           </div>
                           <div className="flex items-center">
@@ -152,7 +164,10 @@ const CartComponent = () => {
                             </button>
                           </div>
                           <p className="text-timbuRed font-semibold">
-                            N{item.current_price[0].NGN[0] || item.current_price}
+                            N
+                            {Array.isArray(item.current_price)
+                              ? item.current_price[0]?.NGN?.[0]
+                              : item.current_price}
                           </p>
                           <img
                             src={trash}

@@ -104,10 +104,12 @@ const Checkout = () => {
       return { totalPrice: 0, shippingCost: 0 };
     }
 
-    const totalPrice = cartItems.reduce(
-      (acc, item) => acc + item.quantity * item.current_price[0].NGN[0],
-      0
-    );
+    const totalPrice = cartItems.reduce((acc, item) => {
+      const price = Array.isArray(item.current_price)
+        ? item.current_price[0]?.NGN?.[0]
+        : item.current_price;
+      return acc + (price || 0) * item.quantity;
+    }, 0);
     const shippingCost = 2000;
     return { totalPrice, shippingCost };
   };
@@ -180,7 +182,9 @@ const Checkout = () => {
           </div>
           <div className="w-[90%] mx-auto">
             <h3 className="font-semibold text-base mb-2">Payment Details</h3>
-            <p className="text-timbuRed" id="error">{error ? error : ""}</p>
+            <p className="text-timbuRed" id="error">
+              {error ? error : ""}
+            </p>
             <form className="border-b border-timbuGrey pb-7 mb-7 lg:border-0">
               <label htmlFor="cardName" className="text-sm font-medium">
                 Name on Card <br />
@@ -340,7 +344,10 @@ const Checkout = () => {
                 <div>
                   <p>{item.name}</p>
                   <p className="text-timbuRed font-semibold">
-                    N{item.current_price[0].NGN[0]}
+                    N
+                    {Array.isArray(item.current_price)
+                      ? item.current_price[0]?.NGN?.[0]
+                      : item.current_price}
                   </p>
                   <p>Quantity: {item.quantity}</p>
                 </div>
